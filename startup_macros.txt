@@ -1,0 +1,52 @@
+macro "File Looper" {
+	input = getDirectory("Select input folder");
+	file_list = getFileList(input);
+
+	for (i = 0; i < lengthOf(file_list); i++) {
+		fileName = file_list[i];
+		sub = 1;
+		workOnCurrentImage = true;
+		if (endsWith(fileName, ".oir")) {
+			while (workOnCurrentImage) { 
+				open(input + File.separator + file_list[i]);
+				run("Z Project...", "projection=[Max Intensity] all");
+				run("Enhance Contrast", "saturated=0.35");
+				waitForUser("do whatever man");
+				close();
+				close("*");
+				//sub = sub + 1;
+				workOnCurrentImage = getBoolean("u done bro?");
+			}
+		}	
+	}
+
+	beep();
+	waitForUser("it's joever");
+}
+
+// makes a 5uM circular ROI 
+macro "Make 5um Circular ROI" {
+	run("Specify...", "width=5 height=5 x=0 y=0 slice=1 oval constrain scaled");
+}
+
+// measures a frame, records the ROI, advances to the next frame of a movie
+macro "measure_advance [a]" {
+	run("Measure");
+	run("Next Slice [>]");
+}
+
+macro "Measure ROIs in timeseries" {
+
+number_of_ROIs = roiManager("count");
+
+for (i = 0; i < number_of_ROIs; i += 1) {
+	roiManager("select", i);
+	roiManager("Measure");
+	run("Next Slice [>]");
+	}
+}
+
+macro "close everything" {
+	waitForUser("Be sure you've saved everything you need to!")
+	close("*")
+}
