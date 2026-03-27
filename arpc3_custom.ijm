@@ -54,8 +54,9 @@ for (i = 0; i < len; ++i) {
 	roi_condenser();
 	selectImage("C3-" + "SUM_" + file_name + "-1.oir");
 	roi_condenser();
-	waitForUser("r u done bitch");
+	waitForUser("Finished?");
 	close("C*");
 }
 
-waitForUser("u done for real??");
+waitForUser("Finished for real?");
+close("*");
