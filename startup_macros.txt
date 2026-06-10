@@ -67,3 +67,29 @@ macro "close everything" {
 	waitForUser("Be sure you've saved everything you need to!")
 	close("*")
 }
+
+macro "Turn all channels grey" {
+getDimensions(width, height, channels, slices, frames);
+
+for (i = 0; i < channels; ++i) {
+	run("Grays");
+	run("Next Slice [>]");
+	}
+}
+
+macro "Save as tiff... [T]" {
+	saveAs("tiff");
+}
+
+macro "Save as avi... [A]" {
+	saveAs("avi");
+}
+
+macro "close everything" {
+	waitForUser("Be sure you've saved everything you need to!")
+	close("*")
+}
+
+macro "Fire [f]" {
+	run("Fire");
+}
