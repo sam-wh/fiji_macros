@@ -13,7 +13,8 @@ for (i = 0; i < lengthOf(file_list); ++i) {
 		name = name_processor();
 		run("Z Project...", "projection=[Max Intensity] all");
 		for (j = 0; j < 2; ++j) {
-			// u have to do this duplication manually sorry dogg 
+			// you can do this duplication programatically but I didn't feel like coding that
+			// so each frame 1/ frame 70 was duplicated by hand 
 			run("Duplicate...");
 			run("Reverse");
 			run("RGB Color");
@@ -65,6 +66,6 @@ function name_processor() {
 	// store the name of this processed name in its own 
 	// variable for returning
 	name_processed = getTitle();
-	// return the new file name. this can be stored in a variable in "main."
+	// return the new file name. this can be stored in a variable in "main" up there
 	return name_processed;
 }
