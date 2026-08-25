@@ -10,6 +10,7 @@ for (i = 0; i < lengthOf(file_list); ++i) {
 	if (endsWith(file_name, ".oir")) {
 		open(input_dir + File.separator + file_list[i]);
 		run("Z Project...", "projection=[Max Intensity] all");
+		//run("Duplicate...", "duplicate frames=1");
 		selectImage("MAX_" + file_name);
 		saveAs("tiff", output_dir + File.separator + file_name);
 		close("*");
@@ -17,4 +18,3 @@ for (i = 0; i < lengthOf(file_list); ++i) {
 		}
 	}	
 }
-
