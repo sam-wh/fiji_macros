@@ -1,4 +1,4 @@
-input_dir = getDirectory("Choose Source Directory");
+winput_dir = getDirectory("Choose Source Directory");
 output_dir = getDirectory("Now, choose destination directory");
 file_list = getFileList(input_dir);
 sep = "_";
